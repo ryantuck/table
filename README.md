@@ -12,5 +12,19 @@ combines TouchOSC with Fadecandy python script.
 
 Currently works with the `.touchosc` file in the iphone-osc folder.
 
+### Notes
 
+Need to have Fadecandy server running on the pi, and then crack open the python script through another terminal window.
+
+On Pi, navigate to `/usr/local/bin` and run:
+
+`sudo fcserver fcserver.json`
+
+On laptop, 
+
+`ssh pi@[ip address]`
+
+enter password and navigate to folder containing script. the folder should also contain the file `opc.py` from [open pixel control](https://github.com/zestyping/openpixelcontrol). 
+
+Fire up the touchOSC app. If you're doing it on Android, you'll have to make your own, but make sure your faders are named appropriately so the python script knows how to interpret them. 
 
