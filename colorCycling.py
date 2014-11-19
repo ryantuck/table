@@ -24,21 +24,71 @@ b = 0
 maxNum = 150
 num = maxNum
 
+phase = 0
+
 def cycleColor():
 	global r
 	global g
 	global b
 	global maxColor
+	global phase
 
-	if r == maxColor:
-		r -= 5
-		g += 5
-	else if g == maxColor:
-		g -= 5
-		b += 5
-	else if b == maxColor:
-		b -= 5
-		r += 5
+	minMaxCheck = False
+
+	if phase == 0:
+		# green up / red max
+		g += 1
+		minMaxCheck = checkIfMax(g)
+	elif phase == 1:
+		# red down / green max
+		r -= 1
+		minMaxCheck = checkifMin(r)
+	elif phase == 2:
+		# blue up / green max
+		b += 1
+		minMaxCheck = checkIfMax(b)
+	elif phase == 3:
+		# green down / blue max
+		g -= 1
+		minMaxCheck = checkIfMin(g)
+	elif phase == 4:
+		# red up / blue max
+		r += 1
+		minMaxCheck = checkIfMax(r)
+	elif phase == 5:
+		# blue down / red max
+		b -= 1
+		minMaxCheck = checkIfMin(b)
+
+	if minMaxCheck:
+		updatePhase()
+
+
+
+
+def updatePhase():
+	global phase
+
+	phase += 1
+	phase = phase % 6
+
+def checkIfMax(var):
+	global maxColor
+
+	if var == maxColor:
+		return True
+	else:
+		return False
+
+def checkIfMin(var):
+	if var == 0:
+		return True
+	else:
+		return False
+
+
+
+
 
 
 
@@ -74,14 +124,7 @@ server.addMsgHandler("redfader",faderR)
 server.addMsgHandler("greenfader",faderG)
 server.addMsgHandler("bluefader",faderB)
 server.addMsgHandler("numfader",faderN)
-server.addMsgHandler("colorcycle1",colorCyle)
 
-# while True:
-# 	for i in range(numLEDs):
-# 		pixels = [ (0,0,0) ] * numLEDs
-# 		pixels[i] = (255, 255, 255)
-# 		client.put_pixels(pixels)
-# 		time.sleep(0.01)
 
 # main loop
 while True:
@@ -91,9 +134,9 @@ while True:
 	cycleColor()
 	pixels = [ (0,0,0) ] * maxNum
 	for i in range(num):
-		pixels[i] = (r,g,b)
+		pixels[i] = (r,b,g)
 	opcClient.put_pixels(pixels)
-	print "%i %i %i %i " % (r,g,b,num)
+	print "r:%i g:%i b:%i num:%i " % (r,g,b,num)
 
 
 server.close()
