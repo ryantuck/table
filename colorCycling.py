@@ -21,10 +21,13 @@ r = maxColor
 g = 0
 b = 0
 
-maxNum = 150
+maxNum = 175
 num = maxNum
 
 phase = 0
+ccStep = 1
+
+isCycling = False
 
 def cycleColor():
 	global r
@@ -34,31 +37,43 @@ def cycleColor():
 	global phase
 
 	minMaxCheck = False
-
+	
 	if phase == 0:
 		# green up / red max
-		g += 1
+		g += ccStep
 		minMaxCheck = checkIfMax(g)
+		if minMaxCheck:
+			g = 255
 	elif phase == 1:
 		# red down / green max
-		r -= 1
-		minMaxCheck = checkifMin(r)
+		r -= ccStep
+		minMaxCheck = checkIfMin(r)
+		if minMaxCheck:
+			r = 0
 	elif phase == 2:
 		# blue up / green max
-		b += 1
+		b += ccStep
 		minMaxCheck = checkIfMax(b)
+		if minMaxCheck:
+			b = 255
 	elif phase == 3:
 		# green down / blue max
-		g -= 1
+		g -= ccStep
 		minMaxCheck = checkIfMin(g)
+		if minMaxCheck:
+			g = 0
 	elif phase == 4:
 		# red up / blue max
-		r += 1
+		r += ccStep
 		minMaxCheck = checkIfMax(r)
+		if minMaxCheck:
+			r = 255
 	elif phase == 5:
 		# blue down / red max
-		b -= 1
+		b -= ccStep
 		minMaxCheck = checkIfMin(b)
+		if minMaxCheck:
+			b = 0
 
 	if minMaxCheck:
 		updatePhase()
@@ -75,13 +90,13 @@ def updatePhase():
 def checkIfMax(var):
 	global maxColor
 
-	if var == maxColor:
+	if var >= maxColor:
 		return True
 	else:
 		return False
 
 def checkIfMin(var):
-	if var == 0:
+	if var <= 0:
 		return True
 	else:
 		return False
@@ -93,10 +108,10 @@ def checkIfMin(var):
 
 
 
-def handle_timeout(self):
-	print ("I'm IDLE")
+#def handle_timeout(self):
+#	print ("I'm IDLE")
 #This here is just to do something while the script recieves no information....
-server.handle_timeout = types.MethodType(handle_timeout, server)
+#server.handle_timeout = types.MethodType(handle_timeout, server)
 
 # FADERS
 #################################################################################################################################################
@@ -117,21 +132,46 @@ def faderN(path,tags,args,source):
 	global num
 	num = int(args[0])
 	print "num: ", num
-
+def ccButton(path,tags,args,source):
+	global isCycling
+	x = int(args[0])
+	if x == 1:
+		isCycling = True
+		global r
+		global g
+		global b
+		global phase
+		phase = 0
+		r = 255
+		g = 0
+		b = 0
+	else:
+		isCycling = False
+	print "button pressed ",isCycling
+def ccStepFader(path,tags,args,source):
+	global ccStep
+	ccStep = int(args[0])
+	print "ccStep: ", ccStep
+	
 	
 #These are all the add-ons that you can name in the TouchOSC layout designer (you can set the values and directories)
 server.addMsgHandler("redfader",faderR)
 server.addMsgHandler("greenfader",faderG)
 server.addMsgHandler("bluefader",faderB)
 server.addMsgHandler("numfader",faderN)
-
+server.addMsgHandler("colorcycle1",ccButton)
+server.addMsgHandler("cyclestep",ccStepFader)
 
 # main loop
 while True:
 	# read data
+	if isCycling:
+		cycleColor()
 	server.handle_request()
+
+	#server.handle_request()
 	# adjust LEDs
-	cycleColor()
+	#cycleColor()
 	pixels = [ (0,0,0) ] * maxNum
 	for i in range(num):
 		pixels[i] = (r,b,g)
