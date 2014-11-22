@@ -141,10 +141,10 @@ def ccButton(path,tags,args,source):
 		global g
 		global b
 		global phase
-		phase = 0
-		r = 255
-		g = 0
-		b = 0
+		# phase = 0
+		# r = 255
+		# g = 0
+		# b = 0
 	else:
 		isCycling = False
 	print "button pressed ",isCycling
