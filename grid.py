@@ -10,6 +10,8 @@ myGrid = tableGraphics.Grid(7,25)
 blue = tableGraphics.Color(0,0,255)
 purple = tableGraphics.Color(255,0,255)
 
+
+
 p1 = tableGraphics.Point(2,2)
 p2 = tableGraphics.Point(2,7)
 p3 = tableGraphics.Point(4,13)
@@ -21,6 +23,8 @@ p6 = tableGraphics.Point(6,23)
 myGrid.drawRect(p1,p2,blue)
 myGrid.drawRect(p3,p4,purple)
 myGrid.drawRect(p5,p6,tableGraphics.yellow)
+
+myGrid.drawRect(tableGraphics.Point(4,0),tableGraphics.Point(6,10),blue)
 
 
 def gridToOPC():
