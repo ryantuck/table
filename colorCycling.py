@@ -141,10 +141,6 @@ def ccButton(path,tags,args,source):
 		global g
 		global b
 		global phase
-		# phase = 0
-		# r = 255
-		# g = 0
-		# b = 0
 	else:
 		isCycling = False
 	print "button pressed ",isCycling
@@ -169,9 +165,6 @@ while True:
 		cycleColor()
 	server.handle_request()
 
-	#server.handle_request()
-	# adjust LEDs
-	#cycleColor()
 	pixels = [ (0,0,0) ] * maxNum
 	for i in range(num):
 		pixels[i] = (r,b,g)
