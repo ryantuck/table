@@ -29,11 +29,11 @@ myGrid.drawRect(tableGraphics.Point(4,0),tableGraphics.Point(6,10),blue)
 
 def gridToOPC():
 
-	opcPixels = [(0,0,0)] * len(myGrid.pixels)
+	opcPixels = [(0,0,0)] * len(flag.pixels)
 
-	for i in range(len(myGrid.pixels)):
-		tmpColor = myGrid.pixels[i]
-		opcPixels[i] = (tmpColor.r,tmpColor.b,tmpColor.g)
+	for i in range(len(flag.pixels)):
+		tmpColor = flag.pixels[i]
+		opcPixels[i] = (tmpColor.r,tmpColor.g,tmpColor.b)
 
 	opcClient.put_pixels(opcPixels)
 

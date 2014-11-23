@@ -59,9 +59,11 @@ class Grid:
 
 
 
+
+
 myGrid = Grid(7,25)
 
-red = Color(255,0,0)
+
 yellow = Color(255,255,0)
 green = Color(0,255,0)
 
@@ -84,8 +86,29 @@ myGrid.drawRect(p1,p2,yellow)
 
 myGrid.printGrid()
 
+flag = Grid(7,25)
 
+red = Color(255,0,0)
+white = Color(255,255,255)
+blue = Color(0,0,255)
 
+# draw stripes
+for i in range(7):
+	if i % 2 == 0:
+		flag.drawRect(Point(i,0),Point(i,24),red)
+	else:
+		flag.drawRect(Point(i,0),Point(i,24),white)
+
+# draw stars
+
+for r in range(4):
+	for c in range(12):
+		rc = r + c
+		if rc % 2 == 0:
+			flag.setPixel(r,c,white)
+		else:
+			flag.setPixel(r,c,blue)
+			
 
 
 
