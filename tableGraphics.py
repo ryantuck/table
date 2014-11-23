@@ -34,19 +34,8 @@ class Grid:
 			print self.pixels[i]
 
 	def setPixel(self,row,column,color):
-		idx = row * 25 + column
+		idx = row * self.cols + column
 		self.pixels[idx] = color
-
-	# def drawLine(self,horizontal=True,row,c1,c2,color):
-		
-	# 	if horizontal:
-	# 		for i in range(pt1,pt2+1):
-	# 			self.setPixel(row,i,color)
-	# 	else:
-	# 		# vertical - reinterpret row as col
-	# 		for i in range(pt1, pt2+1):
-	# 			self.setPixel(i,row,color)
-
 
 	def drawRect(self,pt1,pt2,color,filled=True):
 
@@ -70,8 +59,6 @@ green = Color(0,255,0)
 yellow.printColor()
 
 print myGrid.pixels[0]
-
-myGrid.pixels[2] = red
 
 myGrid.pixels[2].printColor()
 
@@ -108,7 +95,7 @@ for r in range(4):
 			flag.setPixel(r,c,white)
 		else:
 			flag.setPixel(r,c,blue)
-			
+
 
 
 

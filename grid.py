@@ -26,6 +26,7 @@ myGrid.drawRect(p5,p6,tableGraphics.yellow)
 
 myGrid.drawRect(tableGraphics.Point(4,0),tableGraphics.Point(6,10),blue)
 
+flag = tableGraphics.flag
 
 def gridToOPC():
 
@@ -38,8 +39,8 @@ def gridToOPC():
 	opcClient.put_pixels(opcPixels)
 
 	
-
-gridToOPC()
+while true:
+	gridToOPC()
 
 
 
