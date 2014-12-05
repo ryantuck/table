@@ -19,7 +19,7 @@ r = 0
 g = 0
 b = 0
 num = 0
-maxNum = 150
+maxNum = 175
 
 cycling = False
 
