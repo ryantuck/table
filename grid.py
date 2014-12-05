@@ -2,6 +2,7 @@ import opc, time
 
 import tableGraphics
 
+# testing comment from pi
 
 opcClient = opc.Client('localhost:7890')
 
