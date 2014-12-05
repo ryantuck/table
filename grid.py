@@ -59,7 +59,6 @@ while True:
 	gridToOPC()
 	time.sleep(7)
 	clearGrid()
-	time.sleep(7)
 	flagToOPC()
 	time.sleep(7)
 
