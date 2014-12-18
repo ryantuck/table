@@ -1,5 +1,7 @@
 # python script for testing out pygame functionality
 
+# a final test
+
 import pygame
 import pygame.gfxdraw as gfx
 
