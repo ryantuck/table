@@ -38,7 +38,7 @@ class Element:
 
 
 
-class FS(Element):
+class FlashingSquare(Element):
 
 	red = (255,0,0)
 	green = (0,255,0)
@@ -65,10 +65,15 @@ class FS(Element):
 		gfx.box(self.screen,pygame.Rect(self.x,self.y,20,20),self.colors[self.colorIndex])
 
 
+	def setOrigin(self,x,y):
+		self.x = x
+		self.y = y
 
 
 
-class FlashingSquare:
+
+# demonstration class to highlight benefits of subclass system
+class StandaloneFlashingSquare:
 
 	red = (255,0,0)
 	green = (0,255,0)

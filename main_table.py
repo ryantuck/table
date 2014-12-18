@@ -14,7 +14,7 @@ import pygame.gfxdraw as gfx
 
 from pattern import *
 
-square1 = FlashingSquare()
+
 
 
 
@@ -24,7 +24,16 @@ screen = pygame.display.set_mode((1000,280))
 done = False
 clock = pygame.time.Clock()
 
-square2 = FS(screen,updateFrequency=30)
+square1 = StandaloneFlashingSquare()
+square2 = FlashingSquare(screen,updateFrequency=60)
+square3 = FlashingSquare(screen,updateFrequency=20)
+square4 = FlashingSquare(screen,updateFrequency=10)
+
+square2.setOrigin(200,200)
+square3.setOrigin(500,100)
+square4.setOrigin(600,200)
+
+elements = [square2,square3,square4]
 
 # main loop
 while not done:
@@ -41,8 +50,9 @@ while not done:
   screen.fill((0,0,0))
 
   square1.update(screen)
-
-  square2.iterate()
+  
+  for element in elements:
+  	element.iterate()
 
   # update display
   pygame.display.flip()
