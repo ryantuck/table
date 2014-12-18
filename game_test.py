@@ -1,11 +1,15 @@
 # python script for testing out pygame functionality
 
+# you'll need to have pygame installed. check out their site on how to get it. 
+
 # python game_test.py
 # opens pygame window. hit space to change color of rectangle. use arrows to move.
 
 
 import pygame
 import pygame.gfxdraw as gfx
+
+
 
 # initialize with array size
 pygame.init()
