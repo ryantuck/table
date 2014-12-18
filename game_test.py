@@ -1,7 +1,5 @@
 # python script for testing out pygame functionality
 
-#test comment from linux box!
-
 import pygame
 import pygame.gfxdraw as gfx
 
