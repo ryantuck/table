@@ -8,14 +8,64 @@ from pygame import gfxdraw as gfx
 
 class Element:
 
-	def __init__(self,screen):
-		self.rows = rows
-		self.cols = columns
+	def __init__(self, screen, updateFrequency=1):
+		
+		# dimensions
+		self.rows = screen.get_height()
+		self.cols = screen.get_width()
+		self.screen = screen
 
-	def printGrid(self):
-		print "Rows: %i | Columns: %i" % (self.rows, self.cols)
-		for i in range(self.rows * self.cols):
-			print self.pixels[i]
+		# updating
+		self.updateCount = 0
+		self.maxUpdateCount = updateFrequency
+
+	def iterate(self):
+		self.updateCount += 1
+		if self.updateCount == self.maxUpdateCount:
+			self.updateCount = 0
+			self.update()
+		self.show()
+					
+
+	def update(self):
+		# do nothing (if just blank element)
+		pass
+
+	def show(self):
+		# do nothing by default
+		pass
+
+
+
+
+class FS(Element):
+
+	red = (255,0,0)
+	green = (0,255,0)
+	blue = (0,0,255)
+
+	x = 100
+	y = 100
+
+	colorIndex = 1
+	colors = [red,green,blue]
+
+
+	def colorCycle(self,cIdx):
+		cIdx += 1
+		cIdx = cIdx % 3
+		return cIdx
+
+	def update(self):
+
+		self.colorIndex = self.colorCycle(self.colorIndex)
+		
+
+	def show(self):
+		gfx.box(self.screen,pygame.Rect(self.x,self.y,20,20),self.colors[self.colorIndex])
+
+
+
 
 
 class FlashingSquare:

@@ -16,12 +16,15 @@ from pattern import *
 
 square1 = FlashingSquare()
 
+
+
 # initialize with array size
 pygame.init()
 screen = pygame.display.set_mode((1000,280))
 done = False
 clock = pygame.time.Clock()
 
+square2 = FS(screen,updateFrequency=30)
 
 # main loop
 while not done:
@@ -31,10 +34,6 @@ while not done:
     if event.type == pygame.QUIT:
       done = True
 
-    # cycle the color of our rectangle if space bar is hit
-    if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-      cycleColor()
-
   # keep frame rate to 60 fps
   clock.tick(60)
 
@@ -42,6 +41,8 @@ while not done:
   screen.fill((0,0,0))
 
   square1.update(screen)
+
+  square2.iterate()
 
   # update display
   pygame.display.flip()

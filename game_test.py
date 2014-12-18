@@ -9,8 +9,6 @@
 import pygame
 import pygame.gfxdraw as gfx
 
-
-
 # initialize with array size
 pygame.init()
 screen = pygame.display.set_mode((1000,280))
