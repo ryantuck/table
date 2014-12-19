@@ -12,11 +12,7 @@
 import pygame
 import pygame.gfxdraw as gfx
 
-from pattern import *
-
-
-
-
+from element import *
 
 # initialize with array size
 pygame.init()
@@ -28,12 +24,17 @@ square1 = StandaloneFlashingSquare()
 square2 = FlashingSquare(screen,updateFrequency=60)
 square3 = FlashingSquare(screen,updateFrequency=20)
 square4 = FlashingSquare(screen,updateFrequency=10)
+square5 = FlashingMovingSquare(screen,updateFrequency=5)
+
+circle1 = MovingBlueCircle(screen,updateFrequency=2)
 
 square2.setOrigin(200,200)
 square3.setOrigin(500,100)
 square4.setOrigin(600,200)
+square5.setOrigin(800,100)
+circle1.setOrigin(400,150)
 
-elements = [square2,square3,square4]
+elements = [square2,square3,square4,square5,circle1]
 
 # main loop
 while not done:
@@ -49,8 +50,8 @@ while not done:
   # clear screen
   screen.fill((0,0,0))
 
+  # update elements if applicable!
   square1.update(screen)
-  
   for element in elements:
   	element.iterate()
 
