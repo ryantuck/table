@@ -21,8 +21,8 @@ class ScrollingRainbow(Element):
 
   def update(self):
     # update scrolling stuff
-    self.position += 1
-    if self.position == self.colWidth:
+    self.position += 4
+    if self.position >= self.colWidth:
       self.position = 0
       self.colorIndex -= 1
       if self.colorIndex < 0:
@@ -31,7 +31,7 @@ class ScrollingRainbow(Element):
 
   def show(self):
     # draw rectangles of our color
-    
+
     tmpIdx = self.colorIndex
     tmpX = self.position
 
