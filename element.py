@@ -5,6 +5,8 @@
 import pygame
 from pygame import gfxdraw as gfx
 
+from color import *
+
 
 class Element:
 
@@ -39,10 +41,6 @@ class Element:
 
 
 class FlashingSquare(Element):
-
-	red = (255,0,0)
-	green = (0,255,0)
-	blue = (0,0,255)
 
 	x = 100
 	y = 100
@@ -144,16 +142,12 @@ class MovingBlueCircle(FlashingMovingSquare):
 			self.direction = self.updateDirection(self.direction)
 
 	def show(self):
-		gfx.circle(self.screen,self.x,self.y,20,self.blue)
+		gfx.circle(self.screen,self.x,self.y,20,blue)
 
 
 
 # demonstration class to highlight benefits of subclass system
 class StandaloneFlashingSquare:
-
-	red = (255,0,0)
-	green = (0,255,0)
-	blue = (0,0,255)
 
 	x = 20
 	y = 20
