@@ -21,18 +21,25 @@ class Element:
 		self.updateCount = 0
 		self.maxUpdateCount = updateFrequency
 
+		self.setup()
+
+	def setup(self):
+		# take care of setting shit up
+		pass
+
 	def iterate(self):
 		self.updateCount += 1
 		if self.updateCount == self.maxUpdateCount:
 			self.updateCount = 0
 			self.update()
 		self.show()
-					
 
+	# essentially updates the model - backend stuff
 	def update(self):
 		# do nothing (if just blank element)
 		pass
 
+	# defines how view is updated - front-end stuff
 	def show(self):
 		# do nothing by default
 		pass

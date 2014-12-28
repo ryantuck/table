@@ -14,6 +14,8 @@ import pygame.gfxdraw as gfx
 
 from element import *
 
+from custom_elements import *
+
 # initialize with array size
 pygame.init()
 screen = pygame.display.set_mode((1000,280))
@@ -34,7 +36,10 @@ square4.setOrigin(600,200)
 square5.setOrigin(800,100)
 circle1.setOrigin(400,150)
 
-elements = [square2,square3,square4,square5,circle1]
+sr1 = ScrollingRainbow(screen)
+
+
+elements = [square2,square3,square4,square5,circle1,sr1]
 
 # main loop
 while not done:
@@ -57,3 +62,14 @@ while not done:
 
   # update display
   pygame.display.flip()
+
+
+
+
+
+
+
+
+
+
+  
