@@ -39,7 +39,7 @@ circle1.setOrigin(400,150)
 sr1 = ScrollingRainbow(screen)
 
 
-elements = [square2,square3,square4,square5,circle1,sr1]
+elements = [sr1,square2,square3,square4,square5,circle1]
 
 # main loop
 while not done:
