@@ -36,10 +36,13 @@ square4.setOrigin(600,200)
 square5.setOrigin(800,100)
 circle1.setOrigin(400,150)
 
+# elements = [square2,square3,square4,square5,circle1]
+
 sr1 = ScrollingRainbow(screen)
+#elements = [sr1]
 
-
-elements = [sr1,square2,square3,square4,square5,circle1]
+ft = FullTableColorCycle(screen,updateFrequency=5)
+elements = [ft]
 
 # main loop
 while not done:
