@@ -17,7 +17,7 @@ class MovingBox(Element):
   backgroundColor = green
 
   def __init__(self,screen,updateFrequency=1,speed=1):
-    Element.__init__(self,screen)
+    Element.__init__(self,screen,updateFrequency)
     self.speed = speed
 
   def setup(self):

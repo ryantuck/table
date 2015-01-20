@@ -46,7 +46,7 @@ sr1 = ScrollingRainbow(surf)
 ft = FullTableColorCycle(surf,updateFrequency=5)
 stripes = Stripes(surf)
 checkers = Checkerboard(surf)
-mvBox = MovingBox(surf,updateFrequency=1,speed=20)
+mvBox = MovingBox(surf,updateFrequency=10,speed=20)
 
 elements = [mvBox]
 
