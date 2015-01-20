@@ -20,7 +20,7 @@ class Element:
 		# updating
 		self.updateCount = 0
 		self.maxUpdateCount = updateFrequency
-
+		
 		self.setup()
 
 	def setup(self):

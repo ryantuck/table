@@ -23,6 +23,9 @@ pygame.init()
 xDim = 25
 yDim = 7
 
+# set whether LEDs should be covered by opaque screen
+opaqueCover = False
+
 # multiplier for python simulation
 pixelMultiplier = 50
 
@@ -34,14 +37,18 @@ screen = pygame.display.set_mode((pixelMultiplier*xDim,pixelMultiplier*yDim))
 done = False
 clock = pygame.time.Clock()
 
+
 # ------------------------------------------------
 # Element(s)
 # ------------------------------------------------
 
 sr1 = ScrollingRainbow(surf)
 ft = FullTableColorCycle(surf,updateFrequency=5)
+stripes = Stripes(surf)
+checkers = Checkerboard(surf)
+mvBox = MovingBox(surf,updateFrequency=1,speed=20)
 
-elements = [sr1]
+elements = [mvBox]
 
 
 # ------------------------------------------------
@@ -72,7 +79,10 @@ while not done:
   # scale up to large display
   # note - transform.scale is more glitchy
   # transform.smoothscale is my best bet of what it will look like with opaque glass over LEDs
-  bigSurf = pygame.transform.smoothscale(smallSurf,(pixelMultiplier*xDim,pixelMultiplier*yDim))
+  if opaqueCover:
+    bigSurf = pygame.transform.smoothscale(smallSurf,(pixelMultiplier*xDim,pixelMultiplier*yDim))
+  else:
+    bigSurf = pygame.transform.scale(smallSurf,(pixelMultiplier*xDim,pixelMultiplier*yDim))
 
   # write surface to display
   pygame.display.get_surface().blit(bigSurf,(0,0))
