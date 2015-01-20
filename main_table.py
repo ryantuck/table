@@ -47,8 +47,9 @@ ft = FullTableColorCycle(surf,updateFrequency=5)
 stripes = Stripes(surf)
 checkers = Checkerboard(surf)
 mvBox = MovingBox(surf,updateFrequency=10,speed=20)
+sparkles = PrimarySparkle(surf,updateFrequency=5)
 
-elements = [mvBox]
+elements = [sparkles]
 
 
 # ------------------------------------------------
@@ -66,7 +67,7 @@ while not done:
   clock.tick(60)
 
   # clear screen
-  screen.fill((0,0,0))
+  surf.fill((0,0,0))
 
   # update elements if applicable
   for element in elements:
