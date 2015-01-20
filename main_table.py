@@ -4,47 +4,50 @@
 # this will be the main program to deal with table graphics. 
 # runs on PyGame.
 
-# OpenGL not needed for this jawn.
-
 # ==================================================
-
 
 import pygame
 import pygame.gfxdraw as gfx
 
 from graphics.element import *
-
 from graphics.custom_elements import *
+
+# ------------------------------------------------
+# Setup
+# ------------------------------------------------
 
 # initialize with array size
 pygame.init()
-screen = pygame.display.set_mode((1000,280))
+
+# set LED grid dimensions
+xDim = 25
+yDim = 7
+
+# multiplier for python simulation
+pixelMultiplier = 50
+
+# define surface and screen for modifying and displaying, respectively
+surf = pygame.Surface((pixelMultiplier*xDim,pixelMultiplier*yDim))
+screen = pygame.display.set_mode((pixelMultiplier*xDim,pixelMultiplier*yDim))
+
+# additional parameters
 done = False
 clock = pygame.time.Clock()
 
-square1 = StandaloneFlashingSquare()
-square2 = FlashingSquare(screen,updateFrequency=60)
-square3 = FlashingSquare(screen,updateFrequency=20)
-square4 = FlashingSquare(screen,updateFrequency=10)
-square5 = FlashingMovingSquare(screen,updateFrequency=5)
+# ------------------------------------------------
+# Element(s)
+# ------------------------------------------------
 
-circle1 = MovingBlueCircle(screen,updateFrequency=2)
+sr1 = ScrollingRainbow(surf)
+ft = FullTableColorCycle(surf,updateFrequency=5)
 
-square2.setOrigin(200,200)
-square3.setOrigin(500,100)
-square4.setOrigin(600,200)
-square5.setOrigin(800,100)
-circle1.setOrigin(400,150)
+elements = [sr1]
 
-# elements = [square2,square3,square4,square5,circle1]
 
-sr1 = ScrollingRainbow(screen)
-#elements = [sr1]
+# ------------------------------------------------
+# Main Loop
+# ------------------------------------------------
 
-ft = FullTableColorCycle(screen,updateFrequency=5)
-elements = [ft]
-
-# main loop
 while not done:
   for event in pygame.event.get():
 
@@ -58,10 +61,21 @@ while not done:
   # clear screen
   screen.fill((0,0,0))
 
-  # update elements if applicable!
-  square1.update(screen)
+  # update elements if applicable
   for element in elements:
   	element.iterate()
+
+  # scale down surf to 7x25 grid (using averaging algorithm)
+  # would use this surface to output to LEDs as needed
+  smallSurf = pygame.transform.smoothscale(surf,(xDim,yDim))
+
+  # scale up to large display
+  # note - transform.scale is more glitchy
+  # transform.smoothscale is my best bet of what it will look like with opaque glass over LEDs
+  bigSurf = pygame.transform.smoothscale(smallSurf,(pixelMultiplier*xDim,pixelMultiplier*yDim))
+
+  # write surface to display
+  pygame.display.get_surface().blit(bigSurf,(0,0))
 
   # update display
   pygame.display.flip()
