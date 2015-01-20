@@ -1,4 +1,4 @@
-# Pattern
+# Element
 
 # primitive class for animations
 

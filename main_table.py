@@ -12,9 +12,9 @@
 import pygame
 import pygame.gfxdraw as gfx
 
-from element import *
+from graphics.element import *
 
-from custom_elements import *
+from graphics.custom_elements import *
 
 # initialize with array size
 pygame.init()

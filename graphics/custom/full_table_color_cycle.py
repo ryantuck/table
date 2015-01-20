@@ -4,8 +4,8 @@
 
 # could benefit from messing around with brightness levels
 
-from element import *
-from color import *
+from ..element import *
+from ..color import *
 
 class FullTableColorCycle(Element):
 

@@ -1,8 +1,8 @@
 # Custom elements
 
 
-from element import *
-from color import *
+from ..element import *
+from ..color import *
 
 
 class ScrollingRainbow(Element):
