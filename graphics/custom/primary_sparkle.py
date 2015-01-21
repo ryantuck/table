@@ -3,14 +3,22 @@
 
 # gonna have a ton of sparkles going off randomly
 
+# looks very cool with:
+# opaqueCover=True
+# totalSparkles=100
+# sparkleSize = 40
+# updateFrequency = 1 - 5
+
+# or with totalSparkles = 10, sparkleSize=80
+
 from ..element import *
 from ..color import *
 import random
 
 class PrimarySparkle(Element):
 
-  totalSparkles = 100
-  sparkleSize = 40
+  totalSparkles = 10
+  sparkleSize = 120
 
   colors = [red,yellow,green,cyan,blue,magenta]
 

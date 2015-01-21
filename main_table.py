@@ -24,7 +24,7 @@ xDim = 25
 yDim = 7
 
 # set whether LEDs should be covered by opaque screen
-opaqueCover = False
+opaqueCover = True
 
 # multiplier for python simulation
 pixelMultiplier = 50
@@ -43,13 +43,13 @@ clock = pygame.time.Clock()
 # ------------------------------------------------
 
 sr1 = ScrollingRainbow(surf)
-ft = FullTableColorCycle(surf,updateFrequency=5)
+ft = FullTableColorCycle(surf,updateFrequency=1)
 stripes = Stripes(surf)
 checkers = Checkerboard(surf)
 mvBox = MovingBox(surf,updateFrequency=10,speed=20)
 sparkles = PrimarySparkle(surf,updateFrequency=5)
 
-elements = [sparkles]
+elements = [mvBox]
 
 
 # ------------------------------------------------
