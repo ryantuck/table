@@ -49,7 +49,7 @@ checkers = Checkerboard(surf)
 mvBox = MovingBox(surf,updateFrequency=10,speed=20)
 sparkles = PrimarySparkle(surf,updateFrequency=5)
 
-elements = [mvBox]
+elements = [checkers]
 
 
 # ------------------------------------------------
