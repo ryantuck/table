@@ -12,9 +12,17 @@ import pygame.gfxdraw as gfx
 from graphics.element import *
 from graphics.custom_elements import *
 
+import opc
+
 # ------------------------------------------------
 # Setup
 # ------------------------------------------------
+
+# working on hardware, or simulator?
+hardware = True
+
+if hardware:
+  opcClient = opc.Client('localhost:7890')
 
 # initialize with array size
 pygame.init()
@@ -24,7 +32,7 @@ xDim = 25
 yDim = 7
 
 # set whether LEDs should be covered by opaque screen
-opaqueCover = True
+opaqueCover = False
 
 # multiplier for python simulation
 pixelMultiplier = 50
@@ -45,7 +53,7 @@ clock = pygame.time.Clock()
 sr1 = ScrollingRainbow(surf)
 ft = FullTableColorCycle(surf,updateFrequency=1)
 stripes = Stripes(surf)
-checkers = Checkerboard(surf)
+checkers = Checkerboard(surf,updateFrequency=5)
 mvBox = MovingBox(surf,updateFrequency=10,speed=20)
 sparkles = PrimarySparkle(surf,updateFrequency=5)
 
@@ -90,6 +98,18 @@ while not done:
 
   # update display
   pygame.display.flip()
+
+  if hardware:
+    # actually write to the fadecandy
+    pixels = [(0,0,0)] * xDim * yDim
+    for x in range(xDim):
+      for y in range(yDim):
+        idx = 25*y + x
+        tmpColor = smallSurf.get_at((x,y))
+        pixels[idx] = (tmpColor.r,tmpColor.b,tmpColor.g)
+    opcClient.put_pixels(pixels)
+
+
 
 
 
