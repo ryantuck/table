@@ -39,7 +39,9 @@ pixelMultiplier = 50
 
 # define surface and screen for modifying and displaying, respectively
 surf = pygame.Surface((pixelMultiplier*xDim,pixelMultiplier*yDim))
-screen = pygame.display.set_mode((pixelMultiplier*xDim,pixelMultiplier*yDim))
+
+if not hardware:
+  screen = pygame.display.set_mode((pixelMultiplier*xDim,pixelMultiplier*yDim))
 
 # additional parameters
 done = False
@@ -93,12 +95,6 @@ while not done:
   else:
     bigSurf = pygame.transform.scale(smallSurf,(pixelMultiplier*xDim,pixelMultiplier*yDim))
 
-  # write surface to display
-  pygame.display.get_surface().blit(bigSurf,(0,0))
-
-  # update display
-  pygame.display.flip()
-
   if hardware:
     # actually write to the fadecandy
     pixels = [(0,0,0)] * xDim * yDim
@@ -108,6 +104,12 @@ while not done:
         tmpColor = smallSurf.get_at((x,y))
         pixels[idx] = (tmpColor.r,tmpColor.b,tmpColor.g)
     opcClient.put_pixels(pixels)
+  else:
+    # write surface to display
+    pygame.display.get_surface().blit(bigSurf,(0,0))
+
+    # update display
+    pygame.display.flip()
 
 
 
