@@ -67,11 +67,11 @@ elements = [checkers]
 # ------------------------------------------------
 
 while not done:
-  for event in pygame.event.get():
+  # for event in pygame.event.get():
 
-    # handle quit
-    if event.type == pygame.QUIT:
-      done = True
+  #   # handle quit
+  #   if event.type == pygame.QUIT:
+  #     done = True
 
   # keep frame rate to 60 fps
   clock.tick(60)
