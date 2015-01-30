@@ -58,8 +58,9 @@ stripes = Stripes(surf)
 checkers = Checkerboard(surf,updateFrequency=5)
 mvBox = MovingBox(surf,updateFrequency=10,speed=20)
 sparkles = PrimarySparkle(surf,updateFrequency=5)
+ssr = SmoothScrollingRainbow(surf)
 
-elements = [checkers]
+elements = [ssr]
 
 
 # ------------------------------------------------
