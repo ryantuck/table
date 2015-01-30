@@ -22,6 +22,7 @@ class SmoothScrollingRainbow(Element):
 
       tmpIdx = (self.position + i) % 25
       tmpColor = calculateRGB(25,tmpIdx)
+      tmpColor = expandColor(tmpColor)
       tmpX = i*50
 
       gfx.box(self.screen,

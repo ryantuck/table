@@ -19,7 +19,7 @@ import opc
 # ------------------------------------------------
 
 # working on hardware, or simulator?
-hardware = True
+hardware = False
 
 if hardware:
   opcClient = opc.Client('localhost:7890')
